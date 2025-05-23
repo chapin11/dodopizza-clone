@@ -1,0 +1,16 @@
+.header-logo {
+    height: 50px;
+    width: 100px;
+    background-image: url(./header-logo.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.nav-a {
+    /* font-family: 'DodoRoundedv2ExtraLight'; */
+    margin: 5px;
+}
+
+.nav-a:hover {
+    color: #E86100;
+}

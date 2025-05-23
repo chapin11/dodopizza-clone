@@ -1,0 +1,5 @@
+.section-grid {
+    display: grid;
+    grid-template-columns: 310px 310px 310px 310px;
+}
+

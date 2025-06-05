@@ -1,5 +1,5 @@
 import { Order } from "../App";
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 export default function OftenOrder({ orderList }: { orderList: Order[] }) {
   const containerRef = useRef<HTMLDivElement>(null);

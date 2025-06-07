@@ -10,6 +10,8 @@ import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Regular/DodoRounded_v2-R
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Thin/DodoRounded_v2-Thin.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-ExtraLight/DodoRounded_v2-ExtraLight.css";
 
+import { YMaps, Map } from "@pbe/react-yandex-maps";
+
 export type Order = {
   id: number;
   name: string;

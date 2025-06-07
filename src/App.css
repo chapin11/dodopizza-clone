@@ -1,17 +1,41 @@
 
-body,html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  display: flex;
-  align-items: self-start;
-  justify-content: center;
-}
+  body,html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+  }
 
-.app-wrapper {
-  width: 1250px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  .app-wrapper {
+    width: 1250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .app-header{
+    position: sticky;
+    top:0px;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.664);
+    width: 1250px;
+  }
+
+  .app-map {
+    width: 100%;
+    height: 700px;
+
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+  }
+
+#map {
+  width: 100%;
+  height: 500px;
+  border: 2px solid red; /* ← для визуальной проверки */
 }

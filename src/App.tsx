@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import OftenOrder from "./components/OftenOrder";
 import Section from "./components/Section";
+import YandexMap from "./components/YandexMap";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Bold/DodoRounded_v2-Bold.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Light/DodoRounded_v2-Light.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Medium/DodoRounded_v2-Medium.css";
@@ -78,7 +79,7 @@ const PizzaOrderList: Order[] = [
     discript:
       "Ветчина, шампиньоны, увеличенная порция моцареллы, фирменный томатный соус",
     price: 519,
-    oftenOrder: true,
+    oftenOrder: false,
   },
   {
     id: 8,
@@ -109,8 +110,42 @@ const PizzaOrderList: Order[] = [
   },
 ];
 
+const comboOrderList: Order[] = [
+  {
+    id: Math.random() * 10000,
+    name: "Комбо Пеппероби",
+    img: "https://media.dodostatic.net/image/r:292x292/0196a9ad810f70ea93151a8281a68058.avif",
+    discript: "Квадратная пицца, чтобы в игре подкрепиться.",
+    price: 519,
+    oftenOrder: true,
+  },
+  {
+    id: Math.random() * 10000,
+    name: "2 напитка",
+    img: "https://media.dodostatic.net/image/r:292x292/01959617dc25776d8cbf65dd4af4ea60.avif",
+    discript:
+      "Одним словом - литр. Выберите две бутылочки на свой вкус: газировку Добрый или холодный чай Rich",
+    price: 199,
+    oftenOrder: false,
+  },
+  {
+    id: Math.random() * 10000,
+    name: "Додо Бокс",
+    img: "https://media.dodostatic.net/image/r:292x292/019666e9b9e473f89cd53aee7246da60.avif",
+    discript:
+      "Весёлый набор для маленьких создателей: две закуски и напиток на выбор, а самое интересное - игрушка-конструктор из новой коллекции.",
+    price: 429,
+    oftenOrder: false,
+  },
+];
+
 const filteredOrderList = PizzaOrderList.filter((item) => {
   return item.oftenOrder === true;
+});
+comboOrderList.map((item) => {
+  if (item.oftenOrder) {
+    filteredOrderList.push(item);
+  }
 });
 
 function App() {
@@ -129,7 +164,15 @@ function App() {
             <h2 className="font-bold text-[36px]">Пиццы</h2>
             <Section orderList={PizzaOrderList} />
           </section>
+          <section>
+            <h2 className="font-bold text-[36px]">Комбо</h2>
+            <Section orderList={comboOrderList} />
+          </section>
         </main>
+        <div className="app-map">
+          <h2 className="font-regular text-[24px]">Мы на карте</h2>
+          <YandexMap />
+        </div>
       </div>
     </>
   );

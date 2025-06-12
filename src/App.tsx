@@ -3,14 +3,14 @@ import Header from "./components/Header";
 import OftenOrder from "./components/OftenOrder";
 import Section from "./components/Section";
 import YandexMap from "./components/YandexMap";
+import PopupWind from "./components/PopupWind";
+import { useState } from "react";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Bold/DodoRounded_v2-Bold.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Light/DodoRounded_v2-Light.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Medium/DodoRounded_v2-Medium.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Regular/DodoRounded_v2-Regular.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-Thin/DodoRounded_v2-Thin.css";
 import "./images/Dodo Rounded v2 — Web/DodoRounded_v2-ExtraLight/DodoRounded_v2-ExtraLight.css";
-
-import { YMaps, Map } from "@pbe/react-yandex-maps";
 
 export type Order = {
   id: number;
@@ -51,7 +51,7 @@ const PizzaOrderList: Order[] = [
   {
     id: 4,
     name: "Втечина и сыр",
-    img: "https://media.dodostatic.net/image/r:584x584/11ee7d60fda22358ac33c6a44eb093a2.avif",
+    img: "https://media.dodostatic.net/image/r:292x292/11ee7d60fda22358ac33c6a44eb093a2.avif",
     discript: "Ветчина, моцарелла, фирменный соус альфредо",
     price: 479,
     oftenOrder: false,
@@ -59,7 +59,7 @@ const PizzaOrderList: Order[] = [
   {
     id: 5,
     name: "Четыре сыра",
-    img: "https://media.dodostatic.net/image/r:584x584/11ee7d612a1c13cbbfcc286c332d7762.avif",
+    img: "https://media.dodostatic.net/image/r:292x292/11ee7d612a1c13cbbfcc286c332d7762.avif",
     discript:
       "Сыр блю чиз, сыры чеддер и пармезан, моцарелла, фирменный соус альфредо",
     price: 519,
@@ -68,7 +68,7 @@ const PizzaOrderList: Order[] = [
   {
     id: 6,
     name: "Пепперони фреш",
-    img: "https://media.dodostatic.net/image/r:584x584/11ee7d612fc7b7fca5be822752bee1e5.avif",
+    img: "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.avif",
     discript:
       "Пикантная пепперони, увеличенная порция моцареллы, томаты, фирменный томатный соус",
     price: 369,
@@ -77,7 +77,7 @@ const PizzaOrderList: Order[] = [
   {
     id: 7,
     name: "Ветчина и грибы",
-    img: "https://media.dodostatic.net/image/r:584x584/11ef5b10b39bbbbda9f8c4e4ff1b067c.avif",
+    img: "https://media.dodostatic.net/image/r:292x292/11ef5b10b39bbbbda9f8c4e4ff1b067c.avif",
     discript:
       "Ветчина, шампиньоны, увеличенная порция моцареллы, фирменный томатный соус",
     price: 519,
@@ -86,7 +86,7 @@ const PizzaOrderList: Order[] = [
   {
     id: 8,
     name: "Арива",
-    img: "https://media.dodostatic.net/image/r:584x584/019591a0591d7642b97bf6ed6da45252.avif",
+    img: "https://media.dodostatic.net/image/r:292x292/019591a0591d7642b97bf6ed6da45252.avif",
     discript:
       "Цыпленок, острые колбаски чоризо, соус бургер, сладкий перец, красный лук, томаты, моцарелла, соус ранч, чеснок",
     price: 669,
@@ -95,7 +95,7 @@ const PizzaOrderList: Order[] = [
   {
     id: 9,
     name: "Карбонара",
-    img: "https://media.dodostatic.net/image/r:584x584/019591b13a1a724b90092c16d9b1c05a.avif",
+    img: "https://media.dodostatic.net/image/r:292x292/019591b13a1a724b90092c16d9b1c05a.avif",
     discript:
       "Бекон, сыры чеддер и пармезан, моцарелла, томаты, красный лук, чеснок, фирменный соус альфредо, итальянские травы",
     price: 659,
@@ -151,6 +151,15 @@ comboOrderList.map((item) => {
 });
 
 function App() {
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+
+  const handleCardClick = (order: Order) => {
+    setSelectedOrder(order);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedOrder(null);
+  };
   return (
     <>
       <div className="app-wrapper">
@@ -159,16 +168,19 @@ function App() {
         </div>
         <section>
           <h2 className="font-regular text-[24px]">Часто заказывают</h2>
-          <OftenOrder orderList={filteredOrderList} />
+          <OftenOrder
+            orderList={filteredOrderList}
+            onCardClick={handleCardClick}
+          />
         </section>
         <main>
-          <section>
+          <section id="pizza">
             <h2 className="font-bold text-[36px]">Пиццы</h2>
-            <Section orderList={PizzaOrderList} />
+            <Section orderList={PizzaOrderList} onCardClick={handleCardClick} />
           </section>
-          <section>
+          <section id="combo">
             <h2 className="font-bold text-[36px]">Комбо</h2>
-            <Section orderList={comboOrderList} />
+            <Section orderList={comboOrderList} onCardClick={handleCardClick} />
           </section>
         </main>
         <div className="app-map">
@@ -176,6 +188,9 @@ function App() {
           <YandexMap />
         </div>
       </div>
+      {selectedOrder && (
+        <PopupWind order={selectedOrder} onClose={handleClosePopup} />
+      )}
     </>
   );
 }

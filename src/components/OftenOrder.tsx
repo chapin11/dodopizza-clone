@@ -1,7 +1,12 @@
 import { Order } from "../App";
 import { useRef, useEffect } from "react";
 
-export default function OftenOrder({ orderList }: { orderList: Order[] }) {
+type Props = {
+  orderList: Order[];
+  onCardClick: (order: Order) => void;
+};
+
+export default function OftenOrder({ orderList, onCardClick }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,6 +47,7 @@ export default function OftenOrder({ orderList }: { orderList: Order[] }) {
               key={item.id}
               className="oftenorder-table-item min-w-[260px] h-[110px]
               mr-[20px] mb-[10px] mt-[10px] shadow-md/30 flex align-center rounded-xl "
+              onClick={() => onCardClick(item)}
             >
               <span className="oftenOrder-img">
                 <img src={item.img} alt="не" className="w-[90px] m-[10px] " />

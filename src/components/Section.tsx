@@ -1,7 +1,12 @@
 import { Order } from "../App";
 import "./Section.css";
 
-export default function Section({ orderList }: { orderList: Order[] }) {
+type Props = {
+  orderList: Order[];
+  onCardClick: (order: Order) => void;
+};
+
+export default function Section({ orderList, onCardClick }: Props) {
   return (
     <article>
       {orderList.length === 0 ? (
@@ -9,12 +14,16 @@ export default function Section({ orderList }: { orderList: Order[] }) {
       ) : (
         <div className="section-grid">
           {orderList.map((item) => (
-            <div key={item.id} className="mb-[50px] ">
-              <div className="w-[300px] h-[430px] m-[10px] mb-[0] cursor-pointer">
+            <div
+              key={item.id}
+              className="mb-[50px] cursor-pointer"
+              onClick={() => onCardClick(item)}
+            >
+              <div className="w-[300px] h-[430px] m-[10px] mb-[0]">
                 <span className="section-img">
                   <img
                     src={item.img}
-                    alt="не"
+                    alt={item.name}
                     className="relative transition-[0.5s] top-[0px] hover:top-[5px] w-[280px] h-[280px] m-[10px] mb-[5px]"
                   />
                 </span>

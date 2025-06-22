@@ -19,8 +19,8 @@ export default function Section({ orderList, onCardClick }: Props) {
               className="mb-[50px] cursor-pointer"
               onClick={() => onCardClick(item)}
             >
-              <div className="w-[300px] h-[430px] m-[10px] mb-[0]">
-                <span className="section-img">
+              <div className="w-[auto] h-[auto] m-[10px] mb-[0]">
+                <span className="section-img flex align-center justify-center">
                   <img
                     src={item.img}
                     alt={item.name}

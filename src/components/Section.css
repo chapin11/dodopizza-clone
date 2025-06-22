@@ -1,5 +1,7 @@
+@media screen and (min-width: 1201px) {
 .section-grid {
     display: grid;
-    grid-template-columns: 310px 310px 310px 310px;
+    grid-template-columns: auto auto auto auto;
 }
 
+}

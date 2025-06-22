@@ -36,7 +36,7 @@ export default function Header() {
         </nav>
         <div className="header-cart-btn flex flex-row mt-[5px] rounded-[50px] w-[125px] h-[35px] bg-[#E86100] align-center justify-center text-white">
           <a className="flex flex-row mt-[5px]" href="">
-            Корзина  <ShoppingCart />
+            Корзина  <ShoppingCart />
           </a>
         </div>
       </header>

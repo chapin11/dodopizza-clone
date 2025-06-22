@@ -99,7 +99,7 @@ const PizzaOrderList: Order[] = [
     discript:
       "Бекон, сыры чеддер и пармезан, моцарелла, томаты, красный лук, чеснок, фирменный соус альфредо, итальянские травы",
     price: 659,
-    oftenOrder: false,
+    oftenOrder: true,
   },
   {
     id: 10,
@@ -119,7 +119,7 @@ const comboOrderList: Order[] = [
     img: "https://media.dodostatic.net/image/r:292x292/0196a9ad810f70ea93151a8281a68058.avif",
     discript: "Квадратная пицца, чтобы в игре подкрепиться.",
     price: 519,
-    oftenOrder: true,
+    oftenOrder: false,
   },
   {
     id: Math.random() * 10000,
@@ -128,7 +128,7 @@ const comboOrderList: Order[] = [
     discript:
       "Одним словом - литр. Выберите две бутылочки на свой вкус: газировку Добрый или холодный чай Rich",
     price: 199,
-    oftenOrder: false,
+    oftenOrder: true,
   },
   {
     id: Math.random() * 10000,
@@ -137,7 +137,7 @@ const comboOrderList: Order[] = [
     discript:
       "Весёлый набор для маленьких создателей: две закуски и напиток на выбор, а самое интересное - игрушка-конструктор из новой коллекции.",
     price: 429,
-    oftenOrder: false,
+    oftenOrder: true,
   },
 ];
 
@@ -173,16 +173,19 @@ function App() {
             onCardClick={handleCardClick}
           />
         </section>
-        <main>
+        <main className="w-[100%]">
+          {/* Секция пицца */}
           <section id="pizza">
             <h2 className="font-bold text-[36px]">Пиццы</h2>
             <Section orderList={PizzaOrderList} onCardClick={handleCardClick} />
           </section>
+          {/* Секция комбо */}
           <section id="combo">
             <h2 className="font-bold text-[36px]">Комбо</h2>
             <Section orderList={comboOrderList} onCardClick={handleCardClick} />
           </section>
         </main>
+        {/* Яндекс карты */}
         <div className="app-map">
           <h2 className="font-regular text-[24px]">Мы на карте</h2>
           <YandexMap />

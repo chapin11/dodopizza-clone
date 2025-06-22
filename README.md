@@ -4,7 +4,7 @@
 Partial Dodo clone. With the use yandex maps. (Частичный макет сайта Додо пиццы. С использованием Яндекс карты.)
      ![dodoclone](/preview.PNG)
 
-Used in the project React@19(tsx), vite, [react-yandex-maps](https://www.npmjs.com/package/@iminside/react-yandex-maps)
+Used in the project React@19(tsx), vite, [react-yandex-maps](https://www.npmjs.com/package/@iminside/react-yandex-maps) , tailwind
 
 ## Run Locally
 

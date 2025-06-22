@@ -26,6 +26,49 @@ export default function OftenOrder({ orderList, onCardClick }: Props) {
       container.removeEventListener("wheel", handleWheel);
     };
   }, []);
+  
+  useEffect(() => {
+  const container = containerRef.current;
+  if (!container) return;
+
+  let startY = 0;
+  let startX = 0;
+  let isDragging = false;
+
+  const handleTouchStart = (e: TouchEvent) => {
+    isDragging = true;
+    startY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isDragging) return;
+    const deltaY = e.touches[0].clientY - startY;
+    const deltaX = e.touches[0].clientX - startX;
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      // вертикальный свайп — даем браузеру обработать прокрутку
+      return;
+    }
+    e.preventDefault();
+    container.scrollLeft -= deltaX;
+    startY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    isDragging = false;
+  };
+
+  container.addEventListener("touchstart", handleTouchStart, { passive: false });
+  container.addEventListener("touchmove", handleTouchMove, { passive: false });
+  container.addEventListener("touchend", handleTouchEnd);
+
+  return () => {
+    container.removeEventListener("touchstart", handleTouchStart);
+    container.removeEventListener("touchmove", handleTouchMove);
+    container.removeEventListener("touchend", handleTouchEnd);
+  };
+}, []);
 
   return (
     <>
